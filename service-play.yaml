@@ -1,0 +1,24 @@
+- 
+  name: print resolve.conf
+  hosts: all
+  tasks:
+    - command: date
+    - command: cat resolv.conf
+      args:
+         chdir: /etc
+    - lineinfile:
+       path: /etc/resolv.conf
+       line: "nameservers 8.8.8.8"
+       line: "nameservers 8.8.4.4"
+    - yum:
+       name: "{{ pkg_name }}"
+       state: latest
+    - command: git clone https://github.com/mdn/beginner-html-site-styled.git 
+      args:
+        chdir: /usr/share/nginx/html
+    - command: mv /usr/share/nginx/html/beginner-html-site-styled/*  /usr/share/nginx/html
+    - service :
+       name: "{{ service_name }}"
+       state: restarted
+    - command: date
+
