@@ -1,0 +1,5 @@
+- name: Populate service facts
+  ansible.builtin.service_facts:
+- debug:
+    msg: Docker installed!
+  when: "'docker' in services"
