@@ -1,5 +1,5 @@
 - 
-  name: copy file to destination server
+  name: copy a file to destination server
   hosts: all
   tasks:
    - copy:
