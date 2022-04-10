@@ -1,0 +1,8 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-playbook.json": [
+            "file:///home/abhilash/ansible-practice/webserver.yml",
+            "file:///home/abhilash/ansible-practice/service-play.yaml"
+        ]
+    }
+}

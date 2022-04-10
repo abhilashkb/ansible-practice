@@ -1,0 +1,18 @@
+-
+  name: install websever
+  hosts: all
+  tasks:
+    - name: install ngix
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+    - name: install git
+      ansible.builtin.yum:
+        name: git
+        state: present
+        update_cache: yes
