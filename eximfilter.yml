@@ -1,0 +1,19 @@
+---
+  - name: update exim filter
+    hosts: wizz
+    tasks:
+      - name: Insert exim filter code
+        blockinfile:
+         path: /etc/cpanel_exim_system_filter
+         block: |
+          if ("${lookup {$sender_address} partial-lsearch*@{/etc/outgoing_mail_suspended_users_filter}{1}}" is 1)
+          then
+          seen finish
+          endif
+        notify:
+           - restart exim
+    handlers:
+      - name: restart exim
+        service:
+          name: exim
+          state: restarted
