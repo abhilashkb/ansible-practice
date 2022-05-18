@@ -1,0 +1,13 @@
+---
+  - name: abc
+    hosts: localhost
+    tasks:
+     - name: collect facts about system services
+       service_facts:
+       register: services_state
+     - debug:
+#        var: services_state['ansible_facts']['services']['NetworkManager-dispatcher.service']['status']    
+        msg: "{{ services_state['ansible_facts']['services']['NetworkManager-dispatcher.service']['status'] }}" 
+        msg: "enabled"
+#         var: ansible_facts.services['NetworkManager-dispatcher.service']
+       when: ansible_facts.services['NetworkManager-dispatcher.service']['status'] == "enabled"
